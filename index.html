@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadoras</title>
+    <style>
+        body {
+            background-color: #333;
+            color: black;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+			margin-top: 110px;
+        }
+
+        .calculator {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h2>Calculadora de Conversión de Temperatura</h2>
+            <input type="text" id="tempInput" placeholder="Temperatura en Celsius">
+            <button onclick="convertToFahrenheit()">Convertir a Fahrenheit</button>
+            <button onclick="convertToKelvin()">Convertir a Kelvin</button>
+            <p id="tempResult"></p>
+        </div>
+        <div class="calculator">
+            <h2>Calculadora de Conversión de Distancia</h2>
+            <input type="text" id="distInput" placeholder="Distancia en Kilómetros">
+            <button onclick="convertToMiles()">Convertir a Millas</button>
+            <button onclick="convertToMeters()">Convertir a Metros</button>
+            <p id="distResult"></p>
+        </div>
+        <div class="calculator">
+            <h2>Calculadora de Índice de Masa Corporal (IMC)</h2>
+            <input type="text" id="weightInput" placeholder="Peso en Kilogramos">
+            <input type="text" id="heightInput" placeholder="Altura en Metros">
+            <button onclick="calculateBMI()">Calcular IMC</button>
+            <p id="bmiResult"></p>
+        </div>
+    </div>
+    <script>
+        function convertToFahrenheit() {
+            const tempInput = document.getElementById("tempInput");
+            const tempResult = document.getElementById("tempResult");
+            const celsius = parseFloat(tempInput.value);
+            if (!isNaN(celsius)) {
+                const fahrenheit = (celsius * 9/5) + 32;
+                tempResult.textContent = `${celsius}°C = ${fahrenheit.toFixed(2)}°F`;
+            } else {
+                tempResult.textContent = "Inválido";
+            }
+        }
+        function convertToKelvin() {
+            const tempInput = document.getElementById("tempInput");
+            const tempResult = document.getElementById("tempResult");
+            const celsius = parseFloat(tempInput.value);
+
+            if (!isNaN(celsius)) {
+                const kelvin = celsius + 273.15;
+                tempResult.textContent = `${celsius}°C = ${kelvin.toFixed(2)}K`;
+            } else {
+                tempResult.textContent = "Inválido";
+            }
+        }
+        function convertToMiles() {
+            const distInput = document.getElementById("distInput");
+            const distResult = document.getElementById("distResult");
+            const kilometers = parseFloat(distInput.value);
+
+            if (!isNaN(kilometers)) {
+                const miles = kilometers * 0.621371;
+                distResult.textContent = `${kilometers} km = ${miles.toFixed(2)} mi`;
+            } else {
+                distResult.textContent = "Inválido";
+            }
+        }
+        function convertToMeters() {
+            const distInput = document.getElementById("distInput");
+            const distResult = document.getElementById("distResult");
+            const kilometers = parseFloat(distInput.value);
+
+            if (!isNaN(kilometers)) {
+                const meters = kilometers * 1000;
+                distResult.textContent = `${kilometers} km = ${meters.toFixed(2)} m`;
+            } else {
+                distResult.textContent = "Inválido";
+            }
+        }
+        function calculateBMI() {
+            const weightInput = document.getElementById("weightInput");
+            const heightInput = document.getElementById("heightInput");
+            const bmiResult = document.getElementById("bmiResult");
+            const weight = parseFloat(weightInput.value);
+            const height = parseFloat(heightInput.value);
+            if (!isNaN(weight) && !isNaN(height) && weight > 0 && height > 0) {
+                const bmi = weight / (height * height);
+                bmiResult.textContent = `Tu IMC es: ${bmi.toFixed(2)}`;
+            } else {
+                bmiResult.textContent = "Inválido";
+            }
+        }
+    </script>
+</body>
+</html>
